@@ -503,3 +503,11 @@ src/auto/func_ov010_02152884.cpp:
 src/auto/func_ov010_0214c35c.c:
     complete
     .text       start:0x0214c35c end:0x0214c4a4
+
+src/auto/func_ov010_0214b244.c:
+    complete
+    .text       start:0x0214b244 end:0x0214b3a4
+
+src/auto/func_ov010_0214ef60.c:
+    complete
+    .text       start:0x0214ef60 end:0x0214f084
