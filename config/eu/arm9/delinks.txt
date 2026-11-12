@@ -23773,3 +23773,31 @@ src/auto/func_02110474.c:
 src/auto/func_02111c40.c:
     complete
     .text       start:0x02111c40 end:0x02111c78
+
+src/auto/func_0202da74.c:
+    complete
+    .text       start:0x0202da74 end:0x0202df6c
+
+src/auto/func_02034328.c:
+    complete
+    .text       start:0x02034328 end:0x020347e8
+
+src/auto/func_0205b12c.c:
+    complete
+    .text       start:0x0205b12c end:0x0205b638
+
+src/auto/func_0209c564.c:
+    complete
+    .text       start:0x0209c564 end:0x0209cae8
+
+src/auto/func_020a2e2c.c:
+    complete
+    .text       start:0x020a2e2c end:0x020a33ec
+
+src/auto/func_020cba00.c:
+    complete
+    .text       start:0x020cba00 end:0x020cbf30
+
+src/auto/func_020dc8d4.c:
+    complete
+    .text       start:0x020dc8d4 end:0x020dcdbc

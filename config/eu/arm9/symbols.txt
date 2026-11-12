@@ -3423,7 +3423,7 @@ func_020dbdb8 kind:function(arm,size=0x2d8) addr:0x020dbdb8
 func_020dc090 kind:function(arm,size=0x90) addr:0x020dc090
 func_020dc120 kind:function(arm,size=0xd0) addr:0x020dc120
 func_020dc1f0 kind:function(arm,size=0x124) addr:0x020dc1f0
-.L_020dc1f4 kind:label(arm) addr:0x020dc1f4
+lbl_020dc1f4 kind:label(arm) addr:0x020dc1f4
 func_020dc314 kind:function(arm,size=0xf0) addr:0x020dc314
 func_020dc404 kind:function(arm,size=0x1b8) addr:0x020dc404
 func_020dc5bc kind:function(arm,size=0x58) addr:0x020dc5bc

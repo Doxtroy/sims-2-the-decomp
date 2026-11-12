@@ -2564,3 +2564,10 @@ src/auto/func_0210b290.c 1.2/sp2p3
 src/auto/func_0210c348.c 1.2/sp2p3
 src/auto/__FindExceptionTable.c 1.2/sp2p3
 src/auto/func_02111c40.c 1.2/sp2p3
+src/auto/func_0202da74.c 1.2/sp2p3
+src/auto/func_02034328.c 1.2/sp2p3
+src/auto/func_0205b12c.c 1.2/sp2p3
+src/auto/func_0209c564.c 1.2/sp2p3
+src/auto/func_020a2e2c.c 1.2/sp2p3
+src/auto/func_020cba00.c 1.2/sp2p3
+src/auto/func_020dc8d4.c 1.2/sp2p3 -nointerworking
