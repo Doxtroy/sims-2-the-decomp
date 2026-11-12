@@ -335,3 +335,11 @@ src/auto/func_ov014_0214a02c.c:
 src/auto/func_ov014_0214aadc.c:
     complete
     .text       start:0x0214aadc end:0x0214ac7c
+
+src/auto/func_ov014_0214a924.cpp:
+    complete
+    .text       start:0x0214a924 end:0x0214aa20
+
+src/auto/func_ov014_02149bdc.c:
+    complete
+    .text       start:0x02149bdc end:0x02149cb0

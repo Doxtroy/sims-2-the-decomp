@@ -136,3 +136,15 @@ src/auto/func_01ff8880.c:
 src/auto/func_01ff8c00.c:
     complete
     .text       start:0x01ff8c00 end:0x01ff8d10
+
+src/auto/func_01ff9860.c:
+    complete
+    .text       start:0x01ff9860 end:0x01ff98c0
+
+src/auto/func_01ffc4fc.c:
+    complete
+    .text       start:0x01ffc4fc end:0x01ffc54c
+
+src/auto/func_01ffe1e0.c:
+    complete
+    .text       start:0x01ffe1e0 end:0x01ffe28c

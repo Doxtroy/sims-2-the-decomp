@@ -499,3 +499,7 @@ src/auto/func_ov010_02151eb4.cpp:
 src/auto/func_ov010_02152884.cpp:
     complete
     .text       start:0x02152884 end:0x02152ac4
+
+src/auto/func_ov010_0214c35c.c:
+    complete
+    .text       start:0x0214c35c end:0x0214c4a4
