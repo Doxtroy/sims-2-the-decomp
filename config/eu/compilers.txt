@@ -2783,3 +2783,11 @@ src/auto/func_020109c4.c 1.2/sp2p3
 src/auto/func_0203c484.c 1.2/sp2p3
 src/auto/func_0201e1d4.c 1.2/sp2p3
 src/auto/func_020302cc.c 1.2/sp2p3
+src/auto/func_020050d4.c 1.2/sp2p3
+src/auto/func_02092c4c.c 1.2/sp2p3
+src/auto/func_0203d3a4.c 1.2/sp2p3
+src/auto/func_020dbd1c.c 1.2/sp3
+src/auto/func_0205e868.c 1.2/sp2p3
+src/auto/func_020c6edc.c 1.2/sp2p3
+src/auto/func_0206403c.c 1.2/sp2p3
+src/auto/func_020c9164.cpp 1.2/sp2p3
