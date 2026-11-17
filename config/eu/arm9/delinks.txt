@@ -24549,3 +24549,87 @@ src/auto/__sinit_02117584.c:
 src/auto/__sinit_02117640.c:
     complete
     .init       start:0x02117640 end:0x02117688
+
+src/auto/func_02074b58.c:
+    complete
+    .text       start:0x02074b58 end:0x02074bc0
+
+src/auto/func_020cc040.c:
+    complete
+    .text       start:0x020cc040 end:0x020cc0ac
+
+src/auto/func_0208b3d4.c:
+    complete
+    .text       start:0x0208b3d4 end:0x0208b440
+
+src/auto/func_02066c30.c:
+    complete
+    .text       start:0x02066c30 end:0x02066cac
+
+src/auto/func_0203e23c.cpp:
+    complete
+    .text       start:0x0203e23c end:0x0203e370
+
+src/auto/func_02088180.c:
+    complete
+    .text       start:0x02088180 end:0x02088200
+
+src/auto/func_020b91f4.c:
+    complete
+    .text       start:0x020b91f4 end:0x020b9278
+
+src/auto/func_0208928c.c:
+    complete
+    .text       start:0x0208928c end:0x0208930c
+
+src/auto/func_0201ae8c.c:
+    complete
+    .text       start:0x0201ae8c end:0x0201af10
+
+src/auto/func_020154e4.c:
+    complete
+    .text       start:0x020154e4 end:0x02015578
+
+src/auto/func_0204319c.c:
+    complete
+    .text       start:0x0204319c end:0x02043230
+
+src/auto/func_020891ac.c:
+    complete
+    .text       start:0x020891ac end:0x02089234
+
+src/auto/func_02050598.c:
+    complete
+    .text       start:0x02050598 end:0x02050630
+
+src/auto/func_020498dc.c:
+    complete
+    .text       start:0x020498dc end:0x0204997c
+
+src/auto/func_0204933c.c:
+    complete
+    .text       start:0x0204933c end:0x020493d8
+
+src/auto/func_020493d8.c:
+    complete
+    .text       start:0x020493d8 end:0x0204946c
+
+src/auto/func_020e4468.c:
+    complete
+    .text       start:0x020e4468 end:0x020e4508
+
+src/auto/func_02071554.c:
+    complete
+    .text       start:0x02071554 end:0x020715f4
+
+src/auto/func_020048e4.c:
+    complete
+    .text       start:0x020048e4 end:0x0200498c
+
+src/auto/func_020b0658.c:
+    complete
+    .text       start:0x020b0658 end:0x020b0700
+
+src/auto/func_0209b3e0.c:
+    complete
+    .text       start:0x0209b3e0 end:0x0209b488
