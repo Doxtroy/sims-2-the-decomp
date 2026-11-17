@@ -24445,3 +24445,107 @@ src/auto/func_020c2e04.c:
 src/auto/func_020d508c.c:
     complete
     .text       start:0x020d508c end:0x020d5130
+
+src/auto/__sinit_021128c0.c:
+    complete
+    .init       start:0x021128c0 end:0x021128dc
+
+src/auto/__sinit_02112914.c:
+    complete
+    .init       start:0x02112914 end:0x02112918
+
+src/auto/__sinit_02112abc.c:
+    complete
+    .init       start:0x02112abc end:0x02112ac0
+
+src/auto/__sinit_02112ac0.c:
+    complete
+    .init       start:0x02112ac0 end:0x02112ac4
+
+src/auto/__sinit_02112b28.c:
+    complete
+    .init       start:0x02112b28 end:0x02112b2c
+
+src/auto/__sinit_02112b2c.c:
+    complete
+    .init       start:0x02112b2c end:0x02112b30
+
+src/auto/__sinit_02112b98.c:
+    complete
+    .init       start:0x02112b98 end:0x02112b9c
+
+src/auto/__sinit_0211306c.c:
+    complete
+    .init       start:0x0211306c end:0x02113070
+
+src/auto/__sinit_021173b8.c:
+    complete
+    .init       start:0x021173b8 end:0x021173cc
+
+src/auto/__sinit_021173cc.c:
+    complete
+    .init       start:0x021173cc end:0x021173e8
+
+src/auto/__sinit_0211762c.c:
+    complete
+    .init       start:0x0211762c end:0x02117640
+
+src/auto/func_02074bc0.c:
+    complete
+    .text       start:0x02074bc0 end:0x02074bec
+
+src/auto/__sinit_021128dc.c:
+    complete
+    .init       start:0x021128dc end:0x02112914
+
+src/auto/__sinit_021129f0.c:
+    complete
+    .init       start:0x021129f0 end:0x02112a28
+
+src/auto/__sinit_02112a84.c:
+    complete
+    .init       start:0x02112a84 end:0x02112abc
+
+src/auto/__sinit_02112ac4.c:
+    complete
+    .init       start:0x02112ac4 end:0x02112afc
+
+src/auto/__sinit_02112afc.c:
+    complete
+    .init       start:0x02112afc end:0x02112b28
+
+src/auto/__sinit_02112f08.c:
+    complete
+    .init       start:0x02112f08 end:0x02112f38
+
+src/auto/__sinit_02117550.c:
+    complete
+    .init       start:0x02117550 end:0x02117584
+
+src/auto/__sinit_02112918.c:
+    complete
+    .init       start:0x02112918 end:0x0211296c
+
+src/auto/__sinit_0211296c.c:
+    complete
+    .init       start:0x0211296c end:0x021129ac
+
+src/auto/__sinit_021129ac.c:
+    complete
+    .init       start:0x021129ac end:0x021129f0
+
+src/auto/__sinit_021173e8.c:
+    complete
+    .init       start:0x021173e8 end:0x02117424
+
+src/auto/__sinit_02117498.c:
+    complete
+    .init       start:0x02117498 end:0x021174d0
+
+src/auto/__sinit_02117584.c:
+    complete
+    .init       start:0x02117584 end:0x021175d4
+
+src/auto/__sinit_02117640.c:
+    complete
+    .init       start:0x02117640 end:0x02117688
