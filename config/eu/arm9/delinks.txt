@@ -24969,3 +24969,15 @@ src/auto/func_020d871c.c:
 src/auto/func_020ec50c.c:
     complete
     .text       start:0x020ec50c end:0x020ec578
+
+src/auto/func_0203c9f4.c:
+    complete
+    .text       start:0x0203c9f4 end:0x0203cab0
+
+src/auto/func_0204f700.c:
+    complete
+    .text       start:0x0204f700 end:0x0204f7bc
+
+src/auto/func_020643fc.c:
+    complete
+    .text       start:0x020643fc end:0x020644b8
