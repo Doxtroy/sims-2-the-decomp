@@ -2813,3 +2813,9 @@ src/auto/func_02077824.c 1.2/sp2p3
 src/auto/func_020b3854.c 1.2/sp2p3
 src/auto/func_02040698.c 1.2/sp2p3
 src/auto/func_020b2940.c 1.2/sp2p3
+src/auto/func_020b8fa4.c 1.2/sp2p3
+src/auto/func_0204cc68.c 1.2/sp2p3
+src/auto/func_0203c234.cpp 1.2/sp2p3
+src/auto/func_020d05c8.c 1.2/sp2p3 -thumb
+src/auto/func_0204d314.c 1.2/sp2p3
+src/auto/func_02049844.c 1.2/sp2p3
