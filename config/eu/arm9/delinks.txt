@@ -24733,3 +24733,7 @@ src/auto/func_0206403c.c:
 src/auto/func_020c9164.cpp:
     complete
     .text       start:0x020c9164 end:0x020c91ac
+
+src/auto/func_0204eef0.c:
+    complete
+    .text       start:0x0204eef0 end:0x0204ef3c
