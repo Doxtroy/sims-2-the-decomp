@@ -24925,3 +24925,15 @@ src/auto/func_020497b0.c:
 src/auto/func_02018af8.c:
     complete
     .text       start:0x02018af8 end:0x02018bd8
+
+src/auto/func_020d8ea0.c:
+    complete
+    .text       start:0x020d8ea0 end:0x020d8ff8
+
+src/auto/func_0206fd90.c:
+    complete
+    .text       start:0x0206fd90 end:0x0206ffbc
+
+src/auto/func_02106ec0.c:
+    complete
+    .text       start:0x02106ec0 end:0x02106f68
