@@ -11,7 +11,7 @@ No game assets in this repository: see `extract/README.md`.
 ## Progress
 
 <!-- progress:start -->
-`███████░░░░░░░░░░░░░` **34.13%** of the code matched · data 100.00% · 3814/5063 functions
+`███████░░░░░░░░░░░░░` **34.14%** of the code matched · data 100.00% · 3815/5063 functions
 
 | Part of the code | Files | Functions | Share of all code |
 |---|---|---|---|
