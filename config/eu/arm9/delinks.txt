@@ -24813,3 +24813,7 @@ src/auto/func_02077824.c:
 src/auto/func_020b3854.c:
     complete
     .text       start:0x020b3854 end:0x020b38ac
+
+src/auto/func_02040698.c:
+    complete
+    .text       start:0x02040698 end:0x02040724
