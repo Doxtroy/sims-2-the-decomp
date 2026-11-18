@@ -24805,3 +24805,7 @@ src/auto/func_0203c3a4.cpp:
 src/auto/func_0209cae8.c:
     complete
     .text       start:0x0209cae8 end:0x0209cbe0
+
+src/auto/func_02077824.c:
+    complete
+    .text       start:0x02077824 end:0x020778ac
