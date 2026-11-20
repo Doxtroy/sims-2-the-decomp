@@ -25085,3 +25085,11 @@ src/auto/func_020b9278.cpp:
 src/auto/func_020172bc.cpp:
     complete
     .text       start:0x020172bc end:0x02017380
+
+src/auto/func_020bc1a8.c:
+    complete
+    .text       start:0x020bc1a8 end:0x020bc424
+
+src/auto/func_020c90ac.cpp:
+    complete
+    .text       start:0x020c90ac end:0x020c90f8

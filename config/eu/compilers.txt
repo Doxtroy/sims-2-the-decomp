@@ -2877,3 +2877,5 @@ src/auto/func_020de8e4.c 1.2/sp3
 src/auto/func_0208297c.c 1.2/sp2p3
 src/auto/func_020b9278.cpp 1.2/sp2p3
 src/auto/func_020172bc.cpp 1.2/sp2p3
+src/auto/func_020bc1a8.c 1.2/sp2p3
+src/auto/func_020c90ac.cpp 1.2/sp2p3
