@@ -2870,3 +2870,10 @@ src/auto/func_0200e878.c 1.2/sp2p3
 src/auto/func_0202a438.c 1.2/sp2p3
 src/auto/func_02042794.c 1.2/sp2p3
 src/auto/func_020ec578.c 1.2/b56
+src/auto/func_0205e2d8.c 1.2/sp2p3
+src/auto/func_020745c4.c 1.2/sp2p3
+src/auto/func_020432f8.c 1.2/sp2p3
+src/auto/func_020de8e4.c 1.2/sp3
+src/auto/func_0208297c.c 1.2/sp2p3
+src/auto/func_020b9278.cpp 1.2/sp2p3
+src/auto/func_020172bc.cpp 1.2/sp2p3
