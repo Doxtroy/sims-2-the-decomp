@@ -25093,3 +25093,23 @@ src/auto/func_020bc1a8.c:
 src/auto/func_020c90ac.cpp:
     complete
     .text       start:0x020c90ac end:0x020c90f8
+
+src/auto/func_02083bf0.c:
+    complete
+    .text       start:0x02083bf0 end:0x02083cb4
+
+src/auto/func_0201166c.cpp:
+    complete
+    .text       start:0x0201166c end:0x02011734
+
+src/auto/func_02098edc.c:
+    complete
+    .text       start:0x02098edc end:0x02098fa0
+
+src/auto/func_0203ead4.c:
+    complete
+    .text       start:0x0203ead4 end:0x0203eb9c
+
+src/auto/func_02050804.c:
+    complete
+    .text       start:0x02050804 end:0x020508cc
