@@ -2903,3 +2903,8 @@ src/auto/func_02046384.c 1.2/sp2p3
 src/auto/func_02061288.c 1.2/sp2p3
 src/auto/func_020451e4.c 1.2/sp2p3
 src/auto/func_020615b0.c 1.2/sp2p3
+src/auto/func_0206430c.c 1.2/sp2p3 -pragma "opt_propagation off"
+src/auto/func_02077ce4.c 1.2/sp2p3
+src/auto/func_0203c2c4.cpp 1.2/sp2p3
+src/auto/func_0209f0e8.c 1.2/sp2p3
+src/auto/func_020b9c24.cpp 1.2/sp2p3

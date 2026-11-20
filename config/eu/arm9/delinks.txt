@@ -25177,3 +25177,23 @@ src/auto/func_020451e4.c:
 src/auto/func_020615b0.c:
     complete
     .text       start:0x020615b0 end:0x02061680
+
+src/auto/func_0206430c.c:
+    complete
+    .text       start:0x0206430c end:0x020643dc
+
+src/auto/func_02077ce4.c:
+    complete
+    .text       start:0x02077ce4 end:0x02077db4
+
+src/auto/func_0203c2c4.cpp:
+    complete
+    .text       start:0x0203c2c4 end:0x0203c334
+
+src/auto/func_0209f0e8.c:
+    complete
+    .text       start:0x0209f0e8 end:0x0209f1b8
+
+src/auto/func_020b9c24.cpp:
+    complete
+    .text       start:0x020b9c24 end:0x020b9cf4
