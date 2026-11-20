@@ -24985,3 +24985,39 @@ src/auto/func_020643fc.c:
 src/auto/func_02072c18.c:
     complete
     .text       start:0x02072c18 end:0x02072d00
+
+src/auto/func_02028e60.c:
+    complete
+    .text       start:0x02028e60 end:0x02028f54
+
+src/auto/func_020abe04.c:
+    complete
+    .text       start:0x020abe04 end:0x020abedc
+
+src/auto/func_02085d3c.cpp:
+    complete
+    .text       start:0x02085d3c end:0x02085df8
+
+src/auto/func_020df60c.c:
+    complete
+    .text       start:0x020df60c end:0x020df6c8
+
+src/auto/func_020e3d7c.c:
+    complete
+    .text       start:0x020e3d7c end:0x020e3e38
+
+src/auto/func_020418b4.c:
+    complete
+    .text       start:0x020418b4 end:0x0204198c
+
+src/auto/func_0201ca08.cpp:
+    complete
+    .text       start:0x0201ca08 end:0x0201cad0
+
+src/auto/func_020088e8.cpp:
+    complete
+    .text       start:0x020088e8 end:0x020089a8
+
+src/auto/func_0200bc10.c:
+    complete
+    .text       start:0x0200bc10 end:0x0200bcd0
