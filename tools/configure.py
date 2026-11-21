@@ -24,16 +24,21 @@ parser.add_argument("--objdiff", type=Path, help="Path to pre-installed objdiff 
 parser.add_argument("--sjiswrap", type=Path, help="Path to pre-installed sjiswrap executable")
 parser.add_argument('version', help='Game version')
 args = parser.parse_args()
-if args.dsd is None and (Path(__file__).resolve().parent.parent / "dsd-dsi.exe").exists():
-    # dsd built with DSi-enhanced ROM support (decomp ds/_src/ds-decomp, branch dsi-enhanced) until it is released
+# The game: <game>/ above tools/ (a game repository with its own tools/), else the current folder (the shared tools/
+# of All-nds-decomp-games run from games/<LETTER>/<game>/). Paths written in build.ninja stay relative to the game.
+_UP = Path(__file__).resolve().parent.parent
+_ROOT = _UP if (_UP / "config").is_dir() else Path.cwd().resolve()
+TOOLS_DIR = Path(__file__).resolve().parent
+TOOLS_REL = Path(os.path.relpath(TOOLS_DIR, _ROOT)).as_posix()  # "tools", or "../../../tools" in All-nds-decomp-games
+if args.dsd is None and (_ROOT / "dsd-dsi.exe").exists():
+    # A dsd built by hand from the fork (github.com/liolu/ds-decomp, branch dsi-enhanced) wins over any download
     args.dsd = os.path.join(".", "dsd-dsi.exe")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reloc_fixes  # per-game fix of false pointers: does nothing without config/<version>/reloc_fixes.txt
-reloc_fixes.apply(Path(__file__).resolve().parent.parent, args.version, quiet=True)
+reloc_fixes.apply(_ROOT, args.version, quiet=True)
 
 
 # Per-game settings: game.toml at the project root (optional, never touched by the tool sync). Everything else is shared.
-_ROOT = Path(__file__).resolve().parent.parent
 try:
     import tomllib
     GAME_CFG = tomllib.loads((_ROOT / "game.toml").read_text(encoding="utf-8")) if (_ROOT / "game.toml").exists() else {}
@@ -51,6 +56,11 @@ def _game_name() -> str:
 # Config
 GAME = GAME_CFG.get("game") or _game_name()
 DSD_VERSION = 'v0.12.1'
+# game.toml: dsd = "dsi-enhanced" -> the dsd fork with DSi-enhanced (SDK 5) ROM support and init/delink fixes
+# (github.com/liolu/ds-decomp, branch dsi-enhanced), downloaded from its releases into the same ./dsd file
+DSD_DSI_VERSION = 'v0.12.1-dsi.1'
+DSD_TOOL = "dsd-dsi" if GAME_CFG.get("dsd") == "dsi-enhanced" else "dsd"
+DSD_WANTED = DSD_DSI_VERSION if DSD_TOOL == "dsd-dsi" else DSD_VERSION
 WIBO_VERSION = '1.2.0' if sys.platform == 'darwin' else '0.6.16'
 SJISWRAP_VERSION = 'v1.2.2'
 OBJDIFF_VERSION = 'v3.8.2'
@@ -116,7 +126,7 @@ build_path       = root_path / "build"
 src_path         = root_path / "src"
 libs_path        = root_path / "libs"
 extract_path     = root_path / "extract"
-tools_path       = root_path / "tools"
+tools_path       = Path(TOOLS_REL)
 # A pre-installed compiler root can be given with --compiler or the MWCCARM environment variable
 if args.compiler is None and os.environ.get("MWCCARM"):
     args.compiler = Path(os.path.relpath(os.environ["MWCCARM"]))
@@ -245,11 +255,16 @@ def check_can_run_dsd() -> bool:
         if not version.startswith("v"):
             version = "v" + version
 
-        # If it's not the correct version, Ninja will download it and then rerun this script
-        return version == DSD_VERSION or args.dsd is not None
+        if version == DSD_WANTED or args.dsd is not None:
+            return True
+        # A dsd downloaded for another version (or the released dsd in a game that needs the fork): Ninja only
+        # downloads a missing file, so remove it; Ninja then downloads the right one and reruns this script
+        print(f"{DSD} is {version}, this game needs {DSD_TOOL} {DSD_WANTED}: downloading it")
+        os.remove(DSD)
+        return False
     except subprocess.CalledProcessError:
         return False
-    except FileNotFoundError:
+    except (FileNotFoundError, PermissionError):
         return False
 
 
@@ -280,7 +295,7 @@ def main():
 
         n.rule(
             name="download_tool",
-            command=f'{PYTHON} tools/download_tool.py $tool $tag --path $path'
+            command=f'{PYTHON} {TOOLS_REL}/download_tool.py $tool $tag --path $path'
         )
         n.newline()
 
@@ -315,11 +330,11 @@ def main():
         if platform.system == "macos":
             # ASCII is byte-identical in UTF-8 and Shift-JIS. The Mac wrapper
             # enforces that contract before running the unchanged compiler.
-            wrapper = "tools/macos_compiler.py"
+            wrapper = f"{TOOLS_REL}/macos_compiler.py"
             mwcc_cmd = f'{PYTHON} {wrapper} {WINE} "$cc" {CC_FLAGS} {CC_INCLUDES} $cc_flags $cc_extra -d $game_version -MD -c $in -o $basedir'
             mwcc_implicit = [wrapper]
         if platform.system != "windows":
-            transform_dep = "tools/transform_dep.py"
+            transform_dep = f"{TOOLS_REL}/transform_dep.py"
             mwcc_cmd += f" && {PYTHON} {transform_dep} $basefile.d $basefile.d"
             mwcc_implicit.append(transform_dep)
             if WINE == DEFAULT_WIBO_PATH:
@@ -340,7 +355,7 @@ def main():
         n.rule(
             name="mwld",
             # ld_align.py: halfword-aligned objects (Thumb stubs at addr % 4 == 2) despite dsd's ALIGNALL(4)
-            command=f'{PYTHON} tools/ld_align.py {WINE} "{LD}" {LD_FLAGS} $extra_ld_flags @$objects_file $lcf_file -o $out'
+            command=f'{PYTHON} {TOOLS_REL}/ld_align.py {WINE} "{LD}" {LD_FLAGS} $extra_ld_flags @$objects_file $lcf_file -o $out'
         )
         n.newline()
 
@@ -352,7 +367,7 @@ def main():
 
         n.rule(
             name="rom_build",
-            command=f"{PYTHON} tools/rom_build.py {DSD} {DSD_BASE_FLAGS} rom build --config $in --rom $out $arm7_bios_flag"
+            command=f"{PYTHON} {TOOLS_REL}/rom_build.py {DSD} {DSD_BASE_FLAGS} rom build --config $in --rom $out $arm7_bios_flag"
         )
         n.newline()
 
@@ -370,7 +385,7 @@ def main():
 
         n.rule(
             name="m2ctx",
-            command=f"{PYTHON} tools/m2ctx.py -f $out $in"
+            command=f"{PYTHON} {TOOLS_REL}/m2ctx.py -f $out $in"
         )
         n.newline()
 
@@ -394,14 +409,14 @@ def main():
 
         n.rule(
             name="sha1",
-            command=f"{PYTHON} tools/sha1.py $in -c $sha1_file"
+            command=f"{PYTHON} {TOOLS_REL}/sha1.py $in -c $sha1_file"
         )
         n.newline()
 
         configure_cmdline = subprocess.list2cmdline(sys.argv[1:])
         n.rule(
             name="configure",
-            command=f"{PYTHON} tools/configure.py {configure_cmdline}",
+            command=f"{PYTHON} {TOOLS_REL}/configure.py {configure_cmdline}",
             generator=True
         )
         n.newline()
@@ -435,8 +450,8 @@ def add_download_tool_builds(n: ninja_syntax.Writer, project: Project):
             rule="download_tool",
             outputs=DSD,
             variables={
-                "tool": "dsd",
-                "tag": DSD_VERSION,
+                "tool": DSD_TOOL,
+                "tag": DSD_WANTED,
                 "path": DSD,
             },
         )
@@ -524,7 +539,7 @@ def add_mwld_and_rom_builds(n: ninja_syntax.Writer, project: Project):
     if len(objects_to_link) > 0:
         n.build(
             inputs=[*objects_to_link, lcf_file, objects_file],
-            implicit=[LD, "tools/ld_align.py"],
+            implicit=[LD, f"{TOOLS_REL}/ld_align.py"],
             rule="mwld",
             outputs=elf_file,
             variables={
@@ -557,7 +572,7 @@ def add_mwld_and_rom_builds(n: ninja_syntax.Writer, project: Project):
     rom_file = project.build_rom()
     n.build(
         inputs=rom_config_file,
-        implicit=[DSD, "tools/rom_build.py", "tools/banner_fix.py"],
+        implicit=[DSD, f"{TOOLS_REL}/rom_build.py", f"{TOOLS_REL}/banner_fix.py"],
         rule="rom_build",
         outputs=rom_file,
     )

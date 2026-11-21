@@ -8,6 +8,10 @@
     python tools/match.py progress            # rewrite the progress table in README.md (no build needed)
 
 `verify` exits with a non-zero code on any failure. Automated sessions must not commit unless it passes.
+`verify --rules` and `progress --rules` also give the second number of the code rules (tools/coderules.py,
+CODE-RULES.md of DS Decomp Studio): the functions matched under the rules, out of the same matched set the command
+prints. Byte-identical functions that break a [match] rule are MATCH-PENDING: reported, never a verify failure (the
+bytes win), and not counted in that number.
 """
 
 import argparse
@@ -17,9 +21,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import project  # noqa: E402  (this game's version, ROM name, paths: tools/project.py)
+ROOT = project.ROOT  # the game: <game>/ above tools/, or the current folder (shared tools/ of All-nds-decomp-games)
+TOOLS = Path(__file__).resolve().parent
 REPORT = project.REPORT
 SYMBOLS = project.SYMBOLS
 README = ROOT / "README.md"
@@ -121,7 +126,7 @@ def cmd_check(args):
         addr = symbol_address(args.function)
         if addr is None:
             raise SystemExit("address not found in symbols.txt")
-        run([sys.executable, "tools/probe_compiler.py", src, args.function, hex(addr), "--only", "2.0/sp1p5",
+        run([sys.executable, str(TOOLS / "probe_compiler.py"), src, args.function, hex(addr), "--only", "2.0/sp1p5",
              "--flags=-O4,p", "--show"], quiet=False)
     sys.exit(0 if p == 100.0 else 1)
 
@@ -167,14 +172,35 @@ def profile_padding(unit: dict, section: dict, profnames: dict) -> bool:
 
 
 def changed_files() -> list[str]:
-    """Files of the working tree that differ from the last commit (modified, added, untracked)."""
-    r = run(["git", "status", "--porcelain", "--untracked-files=all"])
+    """Files of the game that differ from the last commit (modified, added, untracked), relative to the game.
+
+    `git status --porcelain` prints paths from the top of the repository: the game's own path (games/H/<game>/ in
+    All-nds-decomp-games) is removed, and only the game's files are listed (`-- .`)."""
+    prefix = (run(["git", "rev-parse", "--show-prefix"]).stdout or "").strip()
+    r = run(["git", "-c", "core.quotepath=off", "status", "--porcelain", "--untracked-files=all", "--", "."])
     files = []
     for line in (r.stdout or "").splitlines():
         path = line[3:].split(" -> ")[-1].strip().strip('"')
+        if prefix and path.startswith(prefix):
+            path = path[len(prefix):]
         if line[:2].strip() != "D" and (ROOT / path).is_file() and not path.startswith((".studio/", "build/")):
             files.append(path)
     return files
+
+
+def _rel_tool() -> str:
+    """This tool as written from the game's folder: tools/match.py, or ../../../tools/match.py (All-nds-decomp-games)."""
+    import os
+    try:
+        return Path(os.path.relpath(Path(__file__).resolve(), ROOT)).as_posix()
+    except ValueError:  # another drive (Windows): the game runs the studio's copy
+        return "tools/match.py"
+
+
+def repo_top() -> Path:
+    """Top of the git repository: the game itself, or All-nds-decomp-games/ (its .pre-commit-config.yaml)."""
+    top = (run(["git", "rev-parse", "--show-toplevel"]).stdout or "").strip()
+    return Path(top) if top else ROOT
 
 
 def format_changed() -> None:
@@ -182,7 +208,7 @@ def format_changed() -> None:
     would change. Every tool and every contributor runs `verify` before committing, so the changed files are fixed
     here, with the same pinned hooks, BEFORE the build: what verify checks is what gets committed."""
     files = changed_files()
-    if not files or not (ROOT / ".pre-commit-config.yaml").exists():
+    if not files or not (repo_top() / ".pre-commit-config.yaml").exists():
         return
     import importlib.util
     import shutil
@@ -213,13 +239,15 @@ def cmd_verify(args):
         ok = False
     else:
         print(f"OK  : ROM is byte-identical ({project.ROM_NAME}: OK)")
+    rom_ok = ok  # the .ctor exemption below depends on the ROM only, not on another unit failing first
     report = build_report()
     profnames = load_profnames()
     for u in source_units(report):
         if u["metadata"].get("complete"):
             for s in u.get("sections", []):
                 # objdiff does not diff .ctor (no fuzzy_match_percent at all): the byte-identical ROM is the proof
-                if s["name"] == ".ctor" and "fuzzy_match_percent" not in s and ok:
+                # (rom_ok, not ok: one bad file used to fail every __sinit_ .ctor after it, Spyro 2026-11-16)
+                if s["name"] == ".ctor" and "fuzzy_match_percent" not in s and rom_ok:
                     continue
                 if float(s.get("fuzzy_match_percent", 0)) < 100.0 and not profile_padding(u, s, profnames):
                     print(f"FAIL: {u['metadata'].get('source_path')} is marked complete but {s['name']} is "
@@ -232,6 +260,9 @@ def cmd_verify(args):
     m = report["measures"]
     print(f"INFO: {m.get('matched_functions', 0)}/{m['total_functions']} functions, "
           f"{pct(m, 'matched_code_percent'):.2f}% code")
+    rules = rules_report(report) if args.rules else None
+    if rules:
+        print("INFO: " + rules["summary"] + " (python tools/coderules.py --pending)")
     print("VERIFY PASSED" if ok else "VERIFY FAILED")
     sys.exit(0 if ok else 1)
 
@@ -248,6 +279,21 @@ PARTS = [  # (path prefix, label) of the progress table, first match wins
     ("src/auto/", "Auto-matched (raw m2c output, to clean up)"),
 ]
 STUDIO_URL = "https://github.com/liolu/ds-decomp-studio"
+
+
+def rules_report(report: dict) -> dict | None:
+    """coderules.project_report of this game, written to build/coderules/report.json; None when tools/coderules.py
+    is not in the game yet (`studio.py sync-tools`) or cannot read the sources. The matched set is `report`'s, the
+    one this command prints (objdiff's report.json; config_report gives the same set from delinks.txt)."""
+    try:
+        import coderules
+        rep = coderules.project_report(project.ROOT, project.CONFIG, report)
+        coderules.write_report(project.ROOT, rep)
+        rep["summary"] = coderules.summary(rep)
+        return rep
+    except Exception as e:  # the second number never breaks verify or progress
+        print(f"INFO: code rules not checked ({type(e).__name__}: {e})")
+        return None
 
 
 def bar(percent: float, width: int = 20) -> str:
@@ -332,16 +378,29 @@ def cmd_progress(args):
     lines = ["<!-- progress:start -->",
              f"{bar(code)} **{code:.2f}%** of the code matched · data {data:.2f}% · "
              f"{m.get('matched_functions', 0)}/{m['total_functions']} functions",
-             "",
-             "| Part of the code | Files | Functions | Share of all code |",
-             "|---|---|---|---|"]
+             ""]
+    rules = rules_report(report) if args.rules else None
+    if rules:
+        t = rules["totals"]
+        counted = t["functions"] - t["original_asm"]
+        by_rule = ", ".join(f"{r}: {n}" for r, n in rules["by_rule"].items())
+        lines += [f"**{t['rules_matched']}/{counted}** functions matched under the "
+                  f"[code rules]({STUDIO_URL}/blob/main/CODE-RULES.md) · {t['pending']} MATCH-PENDING "
+                  f"(byte-identical, source not finished{': ' + by_rule if by_rule else ''}) · "
+                  f"{t['original_asm']} ORIGINAL-ASM (listed apart, counted neither way) · "
+                  f"{t['placeholders']} matched functions still use placeholder names",
+                  ""]
+    lines += ["| Part of the code | Files | Functions | Share of all code |",
+              "|---|---|---|---|"]
     for label, (files, done, total, matched) in sorted(parts.items(), key=lambda kv: -kv[1][3]):
         share = 100 * matched / total_code if total_code else 0
         lines.append(f"| {label} | {files} | {done}/{total} | {share:.2f}% |")
     lines += ["",
-              f"*Updated {datetime.date.today().isoformat()} by `python tools/match.py progress` "
+              f"*Updated {datetime.date.today().isoformat()} by `python {_rel_tool()} progress` "
               f"([DS Decomp Studio]({STUDIO_URL})). A function counts only when it compiles to the exact same bytes "
-              f"and the ROM still rebuilds byte for byte.*",
+              f"and the ROM still rebuilds byte for byte"
+              + ("; it counts under the code rules only when its source also passes every [match] rule "
+                 "(`python tools/coderules.py --pending`).*" if rules else ".*"),
               "<!-- progress:end -->"]
     block = "\n".join(lines)
     text = README.read_text(encoding="utf-8")
@@ -371,6 +430,9 @@ def main():
     p = sub.add_parser("verify")
     p.add_argument("--no-format", action="store_true", help="Do not run pre-commit on the changed files first")
     p.set_defaults(fn=cmd_verify)
+    for name in ("verify", "progress"):
+        sub.choices[name].add_argument("--rules", action="store_true",
+                                       help="Also count the functions matched under the code rules (tools/coderules.py)")
     args = ap.parse_args()
     if args.cmd == "verify":
         # A run of auto_match / donor_match killed while integrating left unverified files: undo that first
