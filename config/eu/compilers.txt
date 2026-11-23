@@ -3084,3 +3084,11 @@ src/auto/func_0200d2f4.c 1.2/sp2p3
 src/auto/func_01ffae94.c 1.2/sp2p3
 src/auto/func_020de270.c 1.2/sp3
 src/auto/func_01ff92a8.c 1.2/sp2p3
+src/auto/func_020666d8.c 1.2/sp2p3 -pragma "opt_propagation off"
+src/auto/func_020cc110.c 1.2/sp2p3
+src/auto/func_02063f64.c 1.2/sp2p3
+src/auto/func_02088294.cpp 1.2/sp2p3
+src/auto/func_020b6210.c 1.2/sp2p3
+src/auto/func_02017844.c 1.2/sp2p3
+src/auto/func_020844c4.c 1.2/sp2p3
+src/auto/func_02045894.cpp 1.2/sp2p3 -pragma "opt_common_subs off"
