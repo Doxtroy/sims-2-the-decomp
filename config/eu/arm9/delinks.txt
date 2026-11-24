@@ -26013,3 +26013,35 @@ src/auto/func_0203e9e8.c:
 src/auto/func_0203cdd4.c:
     complete
     .text       start:0x0203cdd4 end:0x0203cec4
+
+src/auto/func_02040c1c.cpp:
+    complete
+    .text       start:0x02040c1c end:0x02040d0c
+
+src/auto/func_020ba100.cpp:
+    complete
+    .text       start:0x020ba100 end:0x020ba1f0
+
+src/auto/func_020dc314.c:
+    complete
+    .text       start:0x020dc314 end:0x020dc404
+
+src/auto/func_02025f04.cpp:
+    complete
+    .text       start:0x02025f04 end:0x02025ff8
+
+src/auto/func_0208475c.cpp:
+    complete
+    .text       start:0x0208475c end:0x0208484c
+
+src/auto/func_020429e8.c:
+    complete
+    .text       start:0x020429e8 end:0x02042adc
+
+src/auto/func_020a4528.c:
+    complete
+    .text       start:0x020a4528 end:0x020a461c
+
+src/auto/func_0203cc08.c:
+    complete
+    .text       start:0x0203cc08 end:0x0203cd00
