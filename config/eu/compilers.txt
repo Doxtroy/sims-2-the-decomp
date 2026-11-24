@@ -3145,3 +3145,7 @@ src/auto/func_020d5268.c 1.2/sp2p3
 src/auto/func_0204b594.cpp 1.2/sp2p3
 src/auto/func_0204d44c.c 1.2/sp2p3
 src/auto/func_02061358.c 1.2/sp2p3
+src/auto/func_02069550.cpp 1.2/sp2p3
+src/auto/func_020bed68.c 1.2/sp2p3
+src/auto/func_02042adc.c 1.2/sp2p3
+src/auto/func_020d7028.c 1.2/sp2p3 -pragma "opt_strength_reduction off"

@@ -26097,3 +26097,19 @@ src/auto/func_0204d44c.c:
 src/auto/func_02061358.c:
     complete
     .text       start:0x02061358 end:0x0206145c
+
+src/auto/func_02069550.cpp:
+    complete
+    .text       start:0x02069550 end:0x02069654
+
+src/auto/func_020bed68.c:
+    complete
+    .text       start:0x020bed68 end:0x020bee6c
+
+src/auto/func_02042adc.c:
+    complete
+    .text       start:0x02042adc end:0x02042be4
+
+src/auto/func_020d7028.c:
+    complete
+    .text       start:0x020d7028 end:0x020d712c
