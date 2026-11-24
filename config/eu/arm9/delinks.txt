@@ -25989,3 +25989,23 @@ src/auto/func_02040a94.c:
 src/auto/func_020d72dc.c:
     complete
     .text       start:0x020d72dc end:0x020d7388
+
+src/auto/func_020d6f28.c:
+    complete
+    .text       start:0x020d6f28 end:0x020d700c
+
+src/auto/func_02037ea8.c:
+    complete
+    .text       start:0x02037ea8 end:0x0203801c
+
+src/auto/func_02016468.c:
+    complete
+    .text       start:0x02016468 end:0x02016550
+
+src/auto/func_02029d28.c:
+    complete
+    .text       start:0x02029d28 end:0x02029e10
+
+src/auto/func_0203e9e8.c:
+    complete
+    .text       start:0x0203e9e8 end:0x0203ead4

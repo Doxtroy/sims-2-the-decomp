@@ -168,3 +168,7 @@ src/auto/func_01ff92a8.c:
 src/auto/func_01ffda98.c:
     complete
     .text       start:0x01ffda98 end:0x01ffdc24
+
+src/auto/func_01ff96c8.c:
+    complete
+    .text       start:0x01ff96c8 end:0x01ff9860
