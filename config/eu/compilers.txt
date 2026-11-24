@@ -3132,3 +3132,11 @@ src/auto/func_0208475c.cpp 1.2/sp2p3 -pragma "opt_common_subs off"
 src/auto/func_020429e8.c 1.2/sp2p3
 src/auto/func_020a4528.c 1.2/sp2p3
 src/auto/func_0203cc08.c 1.2/sp2p3
+src/auto/func_02062bf0.c 1.2/sp2p3
+src/auto/func_0206be9c.cpp 1.2/sp2p3
+src/auto/func_020a4388.c 1.2/sp2p3
+src/auto/func_020d9c08.cpp 1.2/sp2p3
+src/auto/func_02041fa4.c 1.2/sp2p3
+src/auto/func_020577e4.c 1.2/sp2p3
+src/auto/func_02061aac.c 1.2/sp2p3
+src/auto/func_020872e4.cpp 1.2/sp2p3
