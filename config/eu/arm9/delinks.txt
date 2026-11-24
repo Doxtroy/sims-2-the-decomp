@@ -26009,3 +26009,7 @@ src/auto/func_02029d28.c:
 src/auto/func_0203e9e8.c:
     complete
     .text       start:0x0203e9e8 end:0x0203ead4
+
+src/auto/func_0203cdd4.c:
+    complete
+    .text       start:0x0203cdd4 end:0x0203cec4
