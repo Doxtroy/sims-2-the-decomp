@@ -26289,3 +26289,11 @@ src/auto/func_02087b84.cpp:
 src/auto/func_0208e9d4.cpp:
     complete
     .text       start:0x0208e9d4 end:0x0208eb30
+
+src/auto/func_020da048.cpp:
+    complete
+    .text       start:0x020da048 end:0x020da1a4
+
+src/auto/func_02048a1c.cpp:
+    complete
+    .text       start:0x02048a1c end:0x02048b7c
