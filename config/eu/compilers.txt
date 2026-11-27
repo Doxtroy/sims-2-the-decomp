@@ -3169,3 +3169,5 @@ src/auto/func_02011cdc.cpp 1.2/sp2p3
 src/auto/func_02064058.c 1.2/sp2p3 -pragma "opt_propagation off"
 src/auto/func_020759e4.c 1.2/sp2p3
 src/auto/func_020be1f8.cpp 1.2/sp2p3
+src/auto/func_020d809c.c 1.2/sp2p3
+src/auto/func_020852f8.cpp 1.2/sp2p3
