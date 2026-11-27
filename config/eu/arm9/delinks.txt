@@ -26157,3 +26157,35 @@ src/auto/func_020d8828.c:
 src/auto/func_0204e814.c:
     complete
     .text       start:0x0204e814 end:0x0204e938
+
+src/auto/func_0204e938.c:
+    complete
+    .text       start:0x0204e938 end:0x0204ea5c
+
+src/auto/func_0204ea5c.c:
+    complete
+    .text       start:0x0204ea5c end:0x0204eb80
+
+src/auto/func_0204eb80.c:
+    complete
+    .text       start:0x0204eb80 end:0x0204eca4
+
+src/auto/func_020a8774.c:
+    complete
+    .text       start:0x020a8774 end:0x020a8898
+
+src/auto/func_02011cdc.cpp:
+    complete
+    .text       start:0x02011cdc end:0x02011e04
+
+src/auto/func_02064058.c:
+    complete
+    .text       start:0x02064058 end:0x02064180
+
+src/auto/func_020759e4.c:
+    complete
+    .text       start:0x020759e4 end:0x02075b0c
+
+src/auto/func_020be1f8.cpp:
+    complete
+    .text       start:0x020be1f8 end:0x020be320
