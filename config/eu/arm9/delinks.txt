@@ -26129,3 +26129,31 @@ src/auto/func_0205ddfc.c:
 src/auto/func_0203eed4.c:
     complete
     .text       start:0x0203eed4 end:0x0203efec
+
+src/auto/func_0206c0d4.cpp:
+    complete
+    .text       start:0x0206c0d4 end:0x0206c1f0
+
+src/auto/func_020db1a4.c:
+    complete
+    .text       start:0x020db1a4 end:0x020db2c0
+
+src/auto/func_020be7a0.c:
+    complete
+    .text       start:0x020be7a0 end:0x020be8bc
+
+src/auto/func_02014eac.cpp:
+    complete
+    .text       start:0x02014eac end:0x02014fcc
+
+src/auto/func_020c4798.cpp:
+    complete
+    .text       start:0x020c4798 end:0x020c48b8
+
+src/auto/func_020d8828.c:
+    complete
+    .text       start:0x020d8828 end:0x020d8948
+
+src/auto/func_0204e814.c:
+    complete
+    .text       start:0x0204e814 end:0x0204e938
