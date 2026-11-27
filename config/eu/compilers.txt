@@ -3171,3 +3171,11 @@ src/auto/func_020759e4.c 1.2/sp2p3
 src/auto/func_020be1f8.cpp 1.2/sp2p3
 src/auto/func_020d809c.c 1.2/sp2p3
 src/auto/func_020852f8.cpp 1.2/sp2p3
+src/auto/func_01ffe11c.c 1.2/sp2p3
+src/auto/func_020578e4.c 1.2/sp2p3
+src/auto/func_0206279c.c 1.2/sp2p3
+src/auto/func_020b7890.c 1.2/sp2p3
+src/auto/func_02061978.c 1.2/sp2p3
+src/auto/func_02062d78.c 1.2/sp2p3
+src/auto/func_0206e5b0.c 1.2/sp2p3
+src/auto/func_02015578.c 1.2/sp2p3
